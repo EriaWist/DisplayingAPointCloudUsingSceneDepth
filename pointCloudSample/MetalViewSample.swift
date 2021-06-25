@@ -44,7 +44,7 @@ extension Image {
     }
 }
 //- Tag: MetalDepthView
-struct MetalDepthView: View {//進入點
+struct MetalDepthView: View {
     
     // Set the default sizes for the texture views.
     let sizeH: CGFloat = 256
@@ -68,7 +68,6 @@ struct MetalDepthView: View {//進入點
     var body: some View {
         if !ARWorldTrackingConfiguration.supportsFrameSemantics([.sceneDepth, .smoothedSceneDepth]) {
             Text("Unsupported Device: This app requires the LiDAR Scanner to access the scene's depth.")
-            
         } else {
             NavigationView {
                 GeometryReader { geometry in
@@ -77,7 +76,7 @@ struct MetalDepthView: View {//進入點
                         // 3D geometry by matching the textures' aspect ratio.
                         HStack {
                             Spacer()
-                            MetalPointCloud(mtkView: MTKView(), arData: arProvider, confSelection: $selectedConfidence, scaleMovement: $scaleMovement)//畫面繪製
+                            MetalPointCloud(mtkView: MTKView(), arData: arProvider, confSelection: $selectedConfidence, scaleMovement: $scaleMovement)
                                 .zoomOnTapModifier(height: geometry.size.width / 2 / sizeW * sizeH, width: geometry.size.width / 2, title: "")
                             Spacer()
                         }
